@@ -1,6 +1,5 @@
 """
-This module includes classes that provide utility methods required when working
-with date ranges.
+This module provides helper methods for working with date ranges.
 """
 
 from datetime import timedelta
@@ -60,8 +59,10 @@ class DateRange(object):
         Determines the start date of the overlap period between this date range
         and another date range.
         
-        Assumes that this date range overlaps with the other date range.
+        Returns None if this date range does not overlap with the other date range.
         """
+        if not self.overlaps(other):
+            return None
         if self.includes(other.start_date):
             return other.start_date
         else:
@@ -72,8 +73,11 @@ class DateRange(object):
         Determines the end date of the overlap period between this date range
         and another date range.
         
-        Assumes that this date range overlaps with the other date range.
+        Returns None if this date range does not overlap with the other date range.
         """
+        if not self.overlaps(other):
+            return None
+
         if self.includes(other.end_date):
             return other.end_date
         else:
